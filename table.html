@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Table
+{% endblock %}
+
+{% block main %}
+<table class="table tablestriped">
+    <thead>
+        <tr>
+            <th class="text-start">Weekly Miles</th>
+            <th class="text-start">Name</th>
+            <th class="text-end">Location</th>
+            <th class="text-end">Email</th>
+            <th class="text-end">Phone Number</th>
+        </tr>
+    </thead>
+   <tbody>
+        {% for row in rows %}
+            <tr>
+                <td class="text-start">{{ row["weekly_milesl"] }}</td>
+                <td class="text-start">{{ row["full_name"] }}</td>
+                <td class="text-end">{{ row["location"] }}</td>
+                <td class="text-end">{{ row["phone_number"] | usd }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,26 @@
+
+
+/*  We modified the stylesheet from finance*/
+/* Size for brand */
+nav .navbar-brand
+{
+    font-size: large;
+}
+
+/* Colors for brand */
+nav .navbar-brand .blue
+{
+    color: blue;
+}
+nav .navbar-brand .green
+{
+    color: green;
+}
+nav .navbar-brand .red
+{
+    color: red;
+}
+nav .navbar-brand .orange
+{
+    color: orange;
+}
