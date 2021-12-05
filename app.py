@@ -86,7 +86,7 @@ def login():
             flash("Invalid username and/or password")
 
         # Remember which user has logged in
-        session["email"] = users[0]["email_id"]
+        session["email"] = users[0]["email"]
 
         # Redirect user to home page
         return redirect("/register")
