@@ -97,7 +97,7 @@ def search():
         results = User.query.filter(User.location.like(search)).all()
         return render_template("table.html", locations=results, legend="Search Results")
     else:
-        return redirect("/")
+        return render_template("table.html", locations=results, legend="Search Results")
 
 @app.route("/", methods=["GET", "POST"])
 def index():
