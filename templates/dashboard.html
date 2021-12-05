@@ -54,4 +54,68 @@ Dashboard
               <span class="text-muted">329 879  km</span>
             </div>
           </div>
+
+          <h2 class="sub-header">All users</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>User id</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Location</th>
+                  <!-- <th>km</th> -->
+                </tr>
+              </thead>
+              <tbody>
+                {% for user in users %}
+                <tr>
+                  <td>{{ user.id }}</td>
+                  <td>{{ user.username }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.location }}</td>
+                  <!-- <td>1200 km</td> -->
+                </tr>
+                {% endfor %}
+                <!-- {% for userOne in oneItem %}
+                <tr>
+                  <td>{{userOne.id}}</td>
+                  <td>{{userOne.username}}</td>
+                  <td>{{userOne.email}}</td>
+                  <td>{{userOne.location}}</td>
+                  <td>1200 km</td>
+                </tr>
+                {% endfor %} -->
+              </tbody>
+            </table>            
+          </div>
+
+          <h2 class="sub-header">Users from {{inputValue}}</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>User id</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Location</th>
+                  <!-- <th>km</th> -->
+                </tr>
+              </thead>
+              <tbody>
+                {% for userOne in oneItem %}
+                <tr>
+                  <td>{{userOne.id}}</td>
+                  <td>{{userOne.username}}</td>
+                  <td>{{userOne.email}}</td>
+                  <td>{{userOne.location}}</td>
+                  <!-- <td>1200 km</td> -->
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>            
+          </div>
+        </div>
+      </div>
+    </div>
 {% endblock %}
