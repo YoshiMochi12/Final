@@ -85,9 +85,6 @@ def login():
         if len(users) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
             flash("Invalid username and/or password")
 
-        # Remember which user has logged in
-        session["email"] = users[0]["email"]
-
         # Redirect user to home page
         return redirect("/register")
 
