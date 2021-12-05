@@ -87,17 +87,13 @@ def login():
     # User reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("login.html")
-
-@app.route("/table", methods=["GET", "POST"])
-def search():
-    if request.method == "POST":
-        form = request.form
-        search_value = form["search_string"]
-        search = "%{0}%".format(search_value)
-        results = User.query.filter(User.location.like(search)).all()
-        return render_template("table.html", locations=results, legend="Search Results")
-    else:
-        return render_template("table.html", locations=results, legend="Search Results")
+@app.route("/dashboard")
+@login_required
+def dashboard():
+    users = User.query.filter().all()
+    inputValue = request.args.get('loc')
+    oneItem = User.query.filter_by(location=inputValue).all()
+    return render_template('dashboard.html', users=users, name=current_user.username, oneItem=oneItem, inputValue=inputValue)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
