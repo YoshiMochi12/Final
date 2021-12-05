@@ -95,7 +95,7 @@ def search():
         search_value = form["search_string"]
         search = "%{0}%".format(search_value)
         results = User.query.filter(User.location.like(search)).all()
-        return render_template("dashboard.html", locations=results, legend="Search Results")
+        return render_template("table.html", locations=results, legend="Search Results")
     else:
         return redirect("/")
 
