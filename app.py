@@ -96,6 +96,10 @@ def login():
     # User reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("login.html")
+    
+@app.route("/")
+def table():
+    return render_template("table.html")
 
 @app.route("/dashboard", methods=["GET", "POST"])
 def search():
