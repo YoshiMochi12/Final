@@ -98,3 +98,7 @@ def search():
         return render_template("dashboard.html", locations=results, legend="Search Results")
     else:
         return redirect("/")
+
+@app.route("/", methods=["GET", "POST"])
+def index():
+    return redirect("register")
