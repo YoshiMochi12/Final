@@ -81,10 +81,6 @@ def login():
         # Query database for username
         users = db.execute("SELECT * FROM users WHERE email = ?", request.form.get("email"))
 
-        # Ensure username exists and password is correct
-        if len(users) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
-            flash("Invalid username and/or password")
-
         # Redirect user to home page
         return redirect("/register")
 
