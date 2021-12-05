@@ -90,7 +90,7 @@ def login():
     
 @app.route("/")
 def table():
-    return render_template("table.html")
+    return render_template("dashboard.html")
 
 @app.route("/dashboard", methods=["GET", "POST"])
 def search():
