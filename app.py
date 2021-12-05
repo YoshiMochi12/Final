@@ -82,7 +82,7 @@ def login():
         users = db.execute("SELECT * FROM users WHERE email = ?", request.form.get("email"))
 
         # Redirect user to home page
-        return redirect("/register")
+        return redirect("/dashboard")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
