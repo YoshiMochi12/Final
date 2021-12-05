@@ -91,7 +91,7 @@ def login():
 @login_required
 def dashboard():
     users = User.query.filter().all()
-    inputValue = request.args.get('loc')
+    inputValue = request.args.get('location')
     oneItem = User.query.filter_by(location=inputValue).all()
     return render_template('dashboard.html', users=users, name=current_user.username, oneItem=oneItem, inputValue=inputValue)
 
