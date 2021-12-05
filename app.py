@@ -25,41 +25,40 @@ if not os.environ.get("API_KEY"):
     
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    return "Hello"
-    # if request.method == "POST":
-    #     weekly_miles = request.form.get("weekly_miles")
-    #     full_name = request.form.get("full_name")
-    #     location = request.form.get("location")
-    #     email = request.form.get("email")
-    #     phone_number = request.form.get("phone_number")
-    #     password = request.form.get("password")
-    #     confirmation = request.form.get("confirmation")
-    #     if password == "" or confirmation == "":
-    #         flash("Please choose a password")
-    #         return redirect("/register")
-    #     if password != confirmation: 
-    #         flash("The passwords do not match")
-    #         return redirect("/register")
-    #     if email == "":
-    #         flash("Please enter an email")
-    #         return redirect("/register")
-    #     if weekly_miles == "":
-    #         flash("Please enter a value")
-    #         return redirect("/register")
-    #     if full_name == "":
-    #         flash("Please enter your full name")
-    #         return redirect("/register")
-    #     if location == "":
-    #         flash("Please enter the area you reside in")
-    #         return redirect("/register")
-    #     if phone_number == "":
-    #         flash("Please enter a valid phone number")
-    #         return redirect("/register")
-    #     if len(db.execute("SELECT * FROM users WHERE email=?", email)) > 0:
-    #         flash("You have already registered with this email")
-    #     return redirect("/login")
-    # else:
-    #     return render_template("register.html")
+    if request.method == "POST":
+        weekly_miles = request.form.get("weekly_miles")
+        full_name = request.form.get("full_name")
+        location = request.form.get("location")
+        email = request.form.get("email")
+        phone_number = request.form.get("phone_number")
+        password = request.form.get("password")
+        confirmation = request.form.get("confirmation")
+        if password == "" or confirmation == "":
+            flash("Please choose a password")
+            return redirect("/register")
+        if password != confirmation: 
+            flash("The passwords do not match")
+            return redirect("/register")
+        if email == "":
+            flash("Please enter an email")
+            return redirect("/register")
+        if weekly_miles == "":
+            flash("Please enter a value")
+            return redirect("/register")
+        if full_name == "":
+            flash("Please enter your full name")
+            return redirect("/register")
+        if location == "":
+            flash("Please enter the area you reside in")
+            return redirect("/register")
+        if phone_number == "":
+            flash("Please enter a valid phone number")
+            return redirect("/register")
+        if len(db.execute("SELECT * FROM users WHERE email=?", email)) > 0:
+            flash("You have already registered with this email")
+        return redirect("/login")
+    else:
+        return render_template("register.html")
 
 # Code modified from finance app.py login 
 
@@ -98,6 +97,13 @@ def login():
     else:
         return render_template("login.html")
 
-@app.route("/")
-def index():
-    return "big bad"
+@app.route("/dashboard", methods=["GET", "POST"])
+def search():
+    if request.method == "POST":
+        form = request.form
+        search_value = form["search_string"]
+        search = "%{0}%".format(search_value)
+        results = User.query.filter(User.location.like(search)).all()
+        return render_template("dashboard.html", locations=results, legend="Search Results")
+    else:
+        return redirect("/")
