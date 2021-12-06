@@ -2,9 +2,15 @@ import os
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
+# https://stackoverflow.com/questions/44318142/jinja2-exceptions-templatenotfound-bootstrap-base-html
+from flask_bootstrap import Bootstrap
+
+
 
 # Configure application
 app = Flask(__name__)
+bootstrap = Bootstrap(app)
+
 
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
