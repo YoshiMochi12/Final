@@ -81,14 +81,14 @@ def login():
             flash("Password Required")
 
         # Query database for username
-        users = db.execute("SELECT * FROM walkmates WHERE email = ?", request.form.get("email"))
+        users = db.execute("SELECT * FROM users WHERE email = ?", request.form.get("email"))
 
         # Ensure username exists and password is correct
-        if len(walkmates) != 1 or not check_password_hash(walkmates[0]["hash"], request.form.get("password")):
+        if len(users) != 1 or not check_password_hash(users[0]["hash"], request.form.get("password")):
             flash("Invalid username and/or password")
 
         # Remember which user has logged in
-        session["email"] = walkmates[0]["email_id"]
+        session["email"] = users[0]["email_id"]
 
         # Redirect user to home page
         return redirect("/dashboard")
