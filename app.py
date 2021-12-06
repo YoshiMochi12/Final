@@ -62,6 +62,7 @@ def register():
             return redirect("/register")
         if len(db.execute("SELECT * FROM users WHERE email=?", email)) > 0:
             flash("You have already registered with this email")
+        db.execute("INSERT INTO users (email, password) VALUES(?, ?)", username, password)
         return redirect("/login")
     else:
         return render_template("register.html")
