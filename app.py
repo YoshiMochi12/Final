@@ -92,7 +92,7 @@ def login():
 
         # Ensure username exists and password is correct
         # or not check_password_hash(persons[0]["hash"], request.form.get("password"))
-        if len(users) != 1:
+        if len(persons) != 1:
             flash("Invalid username and/or password")
 
         # Remember which user has logged in
