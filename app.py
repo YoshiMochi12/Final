@@ -60,7 +60,7 @@ def register():
         if phone_number == "":
             flash("Please enter a valid phone number")
             return redirect("/register")
-        if len(db.execute("SELECT * FROM users WHERE email=?", email)) > 0:
+        if len(db.execute("SELECT * FROM persons WHERE email=?", email)) > 0:
             flash("You have already registered with this email")
         db.execute("INSERT INTO persons (email) VALUES(?)", email)
         return redirect("/login")
@@ -91,12 +91,12 @@ def login():
         users = db.execute("SELECT * FROM persons WHERE email = ?", request.form.get("email"))
 
         # Ensure username exists and password is correct
-        # or not check_password_hash(users[0]["hash"], request.form.get("password"))
+        # or not check_password_hash(persons[0]["hash"], request.form.get("password"))
         if len(users) != 1:
             flash("Invalid username and/or password")
 
         # Remember which user has logged in
-        # session["email"] = users[0]["email_id"]
+        # session["email"] = persons[0]["email_id"]
 
         # Redirect user to home page
         return redirect("/dashboard")
