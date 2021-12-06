@@ -105,8 +105,8 @@ def table():
 @app.route("/dashboard")
 # @login_required
 def dashboard():
-    users = User.query.filter().all()
+    users = users.query.filter().all()
     inputValue = request.args.get('loc')
-    oneItem = User.query.filter_by(location=inputValue).all()
+    oneItem = users.query.filter_by(location=inputValue).all()
     return render_template('dashboard.html', users=users, name=current_user.username, oneItem=oneItem, inputValue=inputValue)
 
