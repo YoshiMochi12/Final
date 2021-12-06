@@ -62,7 +62,7 @@ def register():
             return redirect("/register")
         if len(db.execute("SELECT * FROM users WHERE email=?", email)) > 0:
             flash("You have already registered with this email")
-        db.execute("INSERT INTO users (email) VALUES(?)", email)
+        db.execute("INSERT INTO persons (email) VALUES(?)", email)
         return redirect("/login")
     else:
         return render_template("register.html")
@@ -88,7 +88,7 @@ def login():
             flash("Password Required")
 
         # Query database for username
-        users = db.execute("SELECT * FROM users WHERE email = ?", request.form.get("email"))
+        users = db.execute("SELECT * FROM persons WHERE email = ?", request.form.get("email"))
 
         # Ensure username exists and password is correct
         # or not check_password_hash(users[0]["hash"], request.form.get("password"))
